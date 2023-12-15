@@ -164,6 +164,12 @@ class GalleyService implements EntityReadInterface, EntityWriteInterface, Entity
 		$values = Services::get('schema')->addMissingMultilingualValues(SCHEMA_GALLEY, $values, $context->getSupportedSubmissionLocales());
 
 		\HookRegistry::call('Galley::getProperties::values', array(&$values, $galley, $props, $args));
+		if (isset("file", $values) {
+			$genreDao = DAORegistry::getDAO('GenreDAO');
+			$genre = $genreDao->getById($values['file']['genreId']);
+			$values['isSupplementary'] = (bool) $genre->getSupplementary();
+		}
+
 
 		ksort($values);
 

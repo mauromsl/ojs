@@ -76,6 +76,12 @@
 			"description": "The URL where this galley can be viewed or downloaded.",
 			"apiSummary": true,
 			"readOnly": true
+		},
+		"isSupplementary": {
+			"type": "boolean",
+			"description": "Whether this Galley is actually a supplementary file",
+			"apiSummary": true,
+			"readOnly": true
 		}
 	}
 }
