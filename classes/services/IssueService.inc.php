@@ -304,6 +304,10 @@ class IssueService implements EntityPropertyInterface, EntityReadInterface {
 					break;
 			}
 		}
+		$is_current = $issue->getCurrent();
+		$values["isCurrent"] = (bool)$is_current;
+
+
 
 		$values = Services::get('schema')->addMissingMultilingualValues(SCHEMA_ISSUE, $values, $context->getSupportedFormLocales());
 

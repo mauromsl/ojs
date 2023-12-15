@@ -48,6 +48,7 @@ class PublicationService extends PKPPublicationService {
 	 */
 	public function getPublicationProperties($hookName, $args) {
 		$values =& $args[0];
+	        $values["issue"] = NULL;
 		$publication = $args[1];
 		$props = $args[2];
 		$dependencies = $args[3];
@@ -63,6 +64,13 @@ class PublicationService extends PKPPublicationService {
 			? $dependencies['context']
 			: $dependencies['context'] = Services::get('context')->get($submission->getData('contextId'));
 
+		if (isset($values['issueId'])) {
+			$issue = Services::get('issue')->get($values['issueId']);
+			if ($issue) {
+				$values["issue"] = ["number" => $issue->getNumber(), "volume"=> $issue->getVolume()];
+
+			}
+		}
 		foreach ($props as $prop) {
 			switch ($prop) {
 				case 'galleys':
