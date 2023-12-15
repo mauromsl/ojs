@@ -259,6 +259,8 @@ class IssueService implements EntityPropertyInterface, EntityReadInterface {
 						'contextId' => $issue->getJournalId(),
 						'issueIds' => $issue->getId(),
 						'count' => 1000, // large upper limit
+                                                'orderBy' => 'seq',
+                                                'orderDirection' => 'ASC',
 					]);
 					foreach ($submissionsIterator as $submission) {
 						$values[$prop][] = \Services::get('submission')->getSummaryProperties($submission, $args);
